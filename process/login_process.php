@@ -25,7 +25,7 @@ session_start();
 
        //Select login info from database using my sql query
        //$query = "SELECT * FROM `info` WHERE `username` = '$username' AND `password` = '$password'";
-       $query = "SELECT * FROM `info` WHERE `username` = '$username'";
+       $query = "SELECT * FROM `users` WHERE `username` = '$username'";
        
        
       

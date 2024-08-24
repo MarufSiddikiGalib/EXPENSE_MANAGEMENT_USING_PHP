@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email= $_SESSION['email']; 
 
         //Update the password in the database using query
-        $query = "UPDATE `info` SET `password` = '$hashedPassword' WHERE `email` = email";
+        $query = "UPDATE `users` SET `password` = '$hashedPassword' WHERE `email` = email";
         if (mysqli_query($con, $query)) {
             $success_msg = "Password updated successfully.";
         } else {

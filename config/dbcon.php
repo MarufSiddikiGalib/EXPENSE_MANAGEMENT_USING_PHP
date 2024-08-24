@@ -6,20 +6,24 @@
     //   define("DATABASE", "crud_operations");
 
 
+    // database host
       if (!defined('HOSTNAME')) {
-        define('HOSTNAME', 'localhost'); // Replace with your actual database host
+        define('HOSTNAME', 'localhost'); 
     }
     
+    //  Database username
     if (!defined('USERNAME')) {
-        define('USERNAME', 'root'); // Replace with your actual database username
+        define('USERNAME', 'root');
     }
     
+    // Database password
     if (!defined('PASSWORD')) {
-        define('PASSWORD', ''); // Replace with your actual database password
+        define('PASSWORD', ''); 
     }
     
+    // Database name
     if (!defined('DATABASE')) {
-        define('DATABASE', 'login_info'); // Replace with your actual database name
+        define('DATABASE', 'expense');
     }
 
       $con = mysqli_connect(HOSTNAME, USERNAME, PASSWORD, DATABASE);

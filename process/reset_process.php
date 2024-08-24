@@ -86,7 +86,7 @@ if (isset($_POST['email'])){
     $email = $_POST['email'];
    
    //Select info from database using query
-    $query = "SELECT * FROM `info` WHERE `email` = '$email'";
+    $query = "SELECT * FROM `users` WHERE `email` = '$email'";
     $result = mysqli_query($con, $query);
 
    if($result){
