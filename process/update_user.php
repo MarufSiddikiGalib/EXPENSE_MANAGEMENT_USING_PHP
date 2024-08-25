@@ -93,42 +93,42 @@
 
 
 
-<form action="update.php?id_new=<?php echo $id; ?> " method = "POST">
+<form action="update_user.php?id_new=<?php echo $id; ?> " method = "POST">
 
 
     
 
 <div class="form-group">
     <label for="firstname">First Name</label>
-    <input type="text" id="firstname" name="firstname" class="form-control" required>
+    <input type="text" id="firstname" name="firstname" class="form-control" value="<?php echo $row['first_name'] ?>" required>
 </div>
 <div class="form-group">
     <label for="lastname">Last Name</label>
-    <input type="text" id="lastname" name="lastname" class="form-control" required>
+    <input type="text" id="lastname" name="lastname" class="form-control" value= "<?php echo $row['last_name'] ?>" required>
 </div>
 <div class="form-group">
     <label for="username">Username</label>
-    <input type="text" id="username" name="username" class="form-control" required>
+    <input type="text" id="username" name="username" class="form-control" value= "<?php echo $row['username'] ?>"   required>
 </div>
 <div class="form-group">
     <label for="mobile">Mobile Number</label>
-    <input type="tel" id="mobile" name="mobile" class="form-control" required>
+    <input type="tel" id="mobile" name="mobile" class="form-control" value= "<?php echo $row['mobile_number'] ?>" required>
 </div>
 <div class="form-group">
     <label for="email">Email</label>
-    <input type="email" id="email" name="email" class="form-control" required>
+    <input type="email" id="email" name="email" class="form-control" value= "<?php echo $row['email'] ?>" required>
 </div>
 <div class="form-group">
     <label for="dob">Date of Birth</label>
-    <input type="date" id="dob" name="dob" class="form-control" required>
+    <input type="date" id="dob" name="dob" class="form-control" value= "<?php echo $row['dob'] ?>" required>
 </div>
 <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" id="password" name="password" class="form-control" required>
+    <input type="password" id="password" name="password" class="form-control"  required>
 </div>
 <div class="form-group">
     <label for="confirm_password">Re-enter Password</label>
-    <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+    <input type="password" id="confirm_password" name="confirm_password" class="form-control"  required>
 </div>
 
 

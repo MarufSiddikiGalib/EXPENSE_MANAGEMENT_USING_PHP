@@ -1,4 +1,6 @@
-<?php include('../config/dbcon.php');  
+<?php 
+include('../config/dbcon.php');  
+include('header.php');  
 session_start() // session underscore start.
 ?>
 
@@ -38,11 +40,12 @@ session_start() // session underscore start.
         
         
         
+        
 
 <div class = "container"></div>
 
 <div class = "box">
-<h2>ALL USERS</h2>
+<h3>ALL USERS</h3>
 <button class = "btn" data-toggle="modal" data-target="#exampleModal" data-toggle="modal" data-target="#exampleModal" >ADD USER</button>
 </div>
 
@@ -90,8 +93,8 @@ session_start() // session underscore start.
             <td> <?php echo $row['dob']; ?> </td>
             <td> <?php echo $row['password']; ?> </td>
 
-            <td><a href="../process/update.php?id=<?php echo $row['id']; ?>  " class = "btn btn-success">Update</a></td>
-            <td><a href="../process/delete.php?id=<?php echo $row['id']; ?>" class = "btn btn-danger">Delete</a></td>
+            <td><a href="../process/update_user.php?id=<?php echo $row['id']; ?>  " class = "btn btn-success">Update</a></td>
+            <td><a href="../process/delete._user.php?id=<?php echo $row['id']; ?>" class = "btn btn-danger">Delete</a></td>
         </tr>
 
             <?php
