@@ -57,7 +57,7 @@
 
 
          // Update the category into the database
-         $query = "UPDATE `category` SET(`name` = '$categoryname') WHERE `id` = '$id_new'";
+         $query = "UPDATE `category` SET `name` = '$categoryname' WHERE `id` = '$id_new'";
 
          // Executing the query
          $result = mysqli_query($con, $query);

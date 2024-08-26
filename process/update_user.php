@@ -18,7 +18,6 @@
 
 </head>
 <body>
-       <h1>Update user</h1>
 
   
        <?php
@@ -70,7 +69,7 @@
 
 
          // Update the user into the database
-         $query = "UPDATE `users` SET(`first_name` = '$firstname', `last_name` = '$lastname', `username` = '$username' , `mobile_number` = '$mobile' , `email` = '$email' , `dob` = '$dob' , `Password` = '$hashedPassword') WHERE `id` = '$id_new'";
+         $query = "UPDATE `users` SET `first_name` = '$firstname', `last_name` = '$lastname', `username` = '$username' , `mobile_number` = '$mobile' , `email` = '$email' , `dob` = '$dob' , `Password` = '$hashedPassword' WHERE `id` = '$id_new'";
 
          // Executing the query
          $result = mysqli_query($con, $query);
@@ -94,10 +93,8 @@
 
 
 <form action="update_user.php?id_new=<?php echo $id; ?> " method = "POST">
-
-
+<h1>Update user</h1>
     
-
 <div class="form-group">
     <label for="firstname">First Name</label>
     <input type="text" id="firstname" name="firstname" class="form-control" value="<?php echo $row['first_name'] ?>" required>

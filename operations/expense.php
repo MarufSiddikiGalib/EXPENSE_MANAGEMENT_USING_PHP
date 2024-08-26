@@ -43,10 +43,11 @@ session_start() // session underscore start.
     <thead></thead>
         <tr>
             <th>ID</th>
-            <th>Category ID</th>
+            <th>Category</th>
             <th>Item</th>
             <th>price</th>
             <th>Details</th>
+            <th>Expense Date</th>
             <th>Added on</th>
 
             <th>Update</th>
@@ -71,15 +72,16 @@ session_start() // session underscore start.
         
         <tr>
             <td> <?php echo $row['id']; ?> </td>
-            <td> <?php echo $row['category_id']; ?> </td>
+            <td> <?php echo $row['category']; ?> </td>
             <td> <?php echo $row['item']; ?> </td>
             <td> <?php echo $row['price']; ?> </td>
             <td> <?php echo $row['details']; ?> </td>
+            <td> <?php echo $row['expense_date']; ?> </td>
             <td> <?php echo $row['added_on']; ?> </td>
             
 
-            <td><a href="../process/update_category.php?id=<?php echo $row['id']; ?>  " class = "btn btn-success">Update</a></td>
-            <td><a href="../process/delete_category.php?id=<?php echo $row['id']; ?>" class = "btn btn-danger">Delete</a></td>
+            <td><a href="../process/update_expense.php?id=<?php echo $row['id']; ?>  " class = "btn btn-success">Update</a></td>
+            <td><a href="../process/delete_expense.php?id=<?php echo $row['id']; ?>" class = "btn btn-danger">Delete</a></td>
         </tr>
 
             <?php
@@ -149,28 +151,50 @@ session_start() // session underscore start.
 
 
             <div class="form-group">
-                <label for="firstname">Category ID</label>
-                <input type="text" id="category_id" name="category_id" class="form-control" required>
-            </div>
+            <label for="category">Category</label>
+            <select id="category" name="category" class="form-control" required>
+
+            <option value="" >Select Category ▼</option>
+            <?php
+              // Fetch categories from the database
+              $query = "SELECT id, name FROM category";
+              $result = mysqli_query($con, $query);
+
+              if ($result && mysqli_num_rows($result) > 0) {
+                  // Loop through the categories and create options
+                  while ($row = mysqli_fetch_assoc($result)) {
+                      // Show category_name in the dropdown
+                      // htmlspecialchars is used to prevent any HTML injection
+                      echo '<option value="' . htmlspecialchars($row['name']) . '">' . htmlspecialchars($row['name']) . '</option>';
+                  }
+              } else {
+                  echo '<option value="">No categories found</option>';
+              }
+              ?>
+              
+            </select>
+          </div>
+
+
 
             <div class="form-group">
-                <label for="firstname">Item</label>
+                <label for="item">Item</label>
                 <input type="text" id="item" name="item" class="form-control" required>
             </div>
 
             <div class="form-group">
-                <label for="firstname">Price</label>
+                <label for="price">Price</label>
                 <input type="text" id="price" name="price" class="form-control" required>
             </div>
 
             <div class="form-group">
-                <label for="firstname">Details</label>
+                <label for="details">Details</label>
                 <input type="text" id="details" name="details" class="form-control" required>
             </div>
 
             <div class="form-group">
-                <label for="firstname">Added on</label>
-                <input type="date" id="added_on" name="added_on" class="form-control" required>
+                <label for="firstname">expense Date</label>
+                <input type="date" id="expense_date" name="expense_date" class="form-control" required>
             </div>
            
 

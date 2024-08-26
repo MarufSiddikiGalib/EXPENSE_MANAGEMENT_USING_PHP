@@ -9,4 +9,5 @@
         <a href="home.php" class = "btn btn-success" >Dashboard</a> 
         <a href="category.php" class = "btn btn-success" >Category</a> 
         <a href="expense.php" class = "btn btn-success" >Expense</a> 
+        <a href="report.php" class = "btn btn-success" >Report</a> 
         <a href="../process/logout_process.php" class = "btn btn-danger" >Logout</a> 

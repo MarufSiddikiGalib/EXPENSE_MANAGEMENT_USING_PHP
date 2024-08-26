@@ -120,11 +120,14 @@ else{
 if (isset($_POST['add_expense'])){
 
    // Collect inputs
-   $category_id = $_POST["category_id"];
+   $category = $_POST["category"];
    $item = $_POST["item"];
    $price = $_POST["price"];
    $details = $_POST["details"];
-   $added_on = $_POST["added_on"];
+   $expense_date = $_POST["expense_date"];
+   
+   date_default_timezone_set('Asia/Dhaka');
+   $added_on = date('Y-m-d h:i:s');
    
 
     if($item == "" || empty($item)){
@@ -139,7 +142,7 @@ else{
 
 
         // Insert the expense into the database
-        $query = "INSERT INTO `expense` (`category_id`, `item`, `price` , `details` , `added_on`) VALUES ('$category_id', '$item', '$price' , '$details' , '$added_on')";
+        $query = "INSERT INTO `expense` (`category`, `item`, `price` , `details` , `expense_date`, `added_on`) VALUES ('$category', '$item', '$price' , '$details' , '$expense_date' , '$added_on')";
 
         $result = mysqli_query($con, $query);
      
