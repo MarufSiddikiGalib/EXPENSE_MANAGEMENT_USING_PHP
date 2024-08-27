@@ -24,7 +24,7 @@ session_start() // session underscore start.
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Expenses</title>
 </head>
 <body>
     
@@ -34,12 +34,12 @@ session_start() // session underscore start.
 
 <div class = "box">
 <h3>Expenses</h3>
-<button class = "btn" data-toggle="modal" data-target="#exampleModal" data-toggle="modal" data-target="#exampleModal" >ADD EXPENSE</button>
+<button class = "btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-toggle="modal" data-target="#exampleModal" >ADD EXPENSE</button>
 </div>
 
-<h1>Admin Panel</h1>
+<br>
 
-<table>
+<table class = "table table-bordered">
     <thead></thead>
         <tr>
             <th>ID</th>

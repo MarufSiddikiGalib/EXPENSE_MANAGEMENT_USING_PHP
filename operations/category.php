@@ -21,24 +21,28 @@ session_start() // session underscore start.
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Categories</title>
+
 </head>
+
 <body>
 
-    <div class = "container"></div>
+    <div class="container"></div>
 
-<div class = "box">
-<h3>Categories</h3>
-<button class = "btn" data-toggle="modal" data-target="#exampleModal" data-toggle="modal" data-target="#exampleModal" >ADD CATEGORY</button>
-</div>
+    <div class="box">
+        <h3>Categories</h3>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-toggle="modal"
+            data-target="#exampleModal">ADD CATEGORY</button>
+    </div>
 
-<h1>Admin Panel</h1>
+    <br>
 
-<table>
-    <thead></thead>
+    <table class="table table-bordered">
+        <thead></thead>
         <tr>
             <th>ID</th>
             <th>Category Name</th>
@@ -46,11 +50,11 @@ session_start() // session underscore start.
             <th>Update</th>
             <th>Delete</th>
         </tr>
-     </thead>
+        </thead>
 
-    <tbody>
+        <tbody>
 
-     <?php
+            <?php
      
      // Select from database using query
      $query = "SELECT * FROM `category`";
@@ -62,15 +66,17 @@ session_start() // session underscore start.
      else{
         while($row = mysqli_fetch_assoc($result)){
             ?>
-        
-        <tr>
-            <td> <?php echo $row['id']; ?> </td>
-            <td> <?php echo $row['name']; ?> </td>
-            
 
-            <td><a href="../process/update_category.php?id=<?php echo $row['id']; ?>  " class = "btn btn-success">Update</a></td>
-            <td><a href="../process/delete_category.php?id=<?php echo $row['id']; ?>" class = "btn btn-danger">Delete</a></td>
-        </tr>
+            <tr>
+                <td> <?php echo $row['id']; ?> </td>
+                <td> <?php echo $row['name']; ?> </td>
+
+
+                <td><a href="../process/update_category.php?id=<?php echo $row['id']; ?>  "
+                        class="btn btn-success">Update</a></td>
+                <td><a href="../process/delete_category.php?id=<?php echo $row['id']; ?>"
+                        class="btn btn-danger">Delete</a></td>
+            </tr>
 
             <?php
         }
@@ -78,15 +84,15 @@ session_start() // session underscore start.
      
      ?>
 
-       
-
-    </tbody>
-
-</table>
 
 
+        </tbody>
 
-<?php 
+    </table>
+
+
+
+    <?php 
   
   if (isset($_GET['message'])){  // extract the message from url
 
@@ -120,41 +126,42 @@ session_start() // session underscore start.
 
 
 
-<!-- Modal -->
+    <!-- Modal -->
 
-<form action="../process/insert.php" method="post">
+    <form action="../process/insert.php" method="post">
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-  <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">ADD CATEGORY</h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">ADD CATEGORY</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
-    
 
-            <div class="form-group">
-                <label for="firstname">Category Name</label>
-                <input type="text" id="name" name="name" class="form-control" required>
+
+                        <div class="form-group">
+                            <label for="firstname">Category Name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" name="add_category" class="btn btn-primary" value="ADD">
+                    </div>
+                </div>
             </div>
-           
+        </div>
 
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <input type="submit" name="add_category" class="btn btn-primary" value="ADD">
-  </div>
-</div>
-</div>
-</div>
+    </form>
 
-   </form>
-
-</div>
+    </div>
 
 
 
@@ -163,4 +170,5 @@ session_start() // session underscore start.
 
 
 </body>
+
 </html>
