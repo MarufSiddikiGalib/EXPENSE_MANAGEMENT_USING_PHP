@@ -1,6 +1,7 @@
 <?php 
 // user insertion , category insertion and expense insertion all are here
 include('../config/dbcon.php');  
+session_start();
 
 
 // USER INSERTION
@@ -17,6 +18,7 @@ if (isset($_POST['add_user'])){
    $dob = $_POST["dob"];
    $password = $_POST["password"];
    $confirm_password = $_POST["confirm_password"];
+   $role = $_POST["role"];
 
     if($firstname == "" || empty($firstname)){
         //Throw errror messsage to url. Message showed in ./operations/home.php
@@ -34,7 +36,7 @@ else{
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
         // Insert the user into the database
-        $query = "INSERT INTO `users` (`first_name`, `last_name`, `username` , `mobile_number` , `email` , `dob` , `Password`) VALUES ('$firstname', '$lastname', '$username' , '$mobile' , '$email' , '$dob' , '$hashedPassword')";
+        $query = "INSERT INTO `users` (`first_name`, `last_name`, `username` , `mobile_number` , `email` , `dob` , `Password` , `role`) VALUES ('$firstname', '$lastname', '$username' , '$mobile' , '$email' , '$dob' , '$hashedPassword' , '$role')";
 
         $result = mysqli_query($con, $query);
      
@@ -126,6 +128,7 @@ if (isset($_POST['add_expense'])){
    $details = $_POST["details"];
    $expense_date = $_POST["expense_date"];
    
+   
    date_default_timezone_set('Asia/Dhaka');
    $added_on = date('Y-m-d h:i:s');
    
@@ -139,10 +142,10 @@ if (isset($_POST['add_expense'])){
         }
 
 else{
-
-
+        // Store the username of who is adding the expense 
+         $added_by = $_SESSION['username'];
         // Insert the expense into the database
-        $query = "INSERT INTO `expense` (`category`, `item`, `price` , `details` , `expense_date`, `added_on`) VALUES ('$category', '$item', '$price' , '$details' , '$expense_date' , '$added_on')";
+        $query = "INSERT INTO `expense` (`category`, `item`, `price` , `details` , `expense_date`, `added_on`, `added_by`) VALUES ('$category', '$item', '$price' , '$details' , '$expense_date' , '$added_on' , '$added_by')";
 
         $result = mysqli_query($con, $query);
      

@@ -59,6 +59,7 @@
           $dob = $_POST["dob"];
           $password = $_POST["password"];
           $confirm_password = $_POST["confirm_password"];
+          $role = $_POST["role"];
 
          //$query = "UPDATE `stud` SET `first_name` = '$fname', `last_name` = '$lname', `age` = '$age' WHERE `id` = '$id_new'";
 
@@ -69,7 +70,7 @@
 
 
          // Update the user into the database
-         $query = "UPDATE `users` SET `first_name` = '$firstname', `last_name` = '$lastname', `username` = '$username' , `mobile_number` = '$mobile' , `email` = '$email' , `dob` = '$dob' , `Password` = '$hashedPassword' WHERE `id` = '$id_new'";
+         $query = "UPDATE `users` SET `first_name` = '$firstname', `last_name` = '$lastname', `username` = '$username' , `mobile_number` = '$mobile' , `email` = '$email' , `dob` = '$dob' , `Password` = '$hashedPassword' , `role` = '$role' WHERE `id` = '$id_new'";
 
          // Executing the query
          $result = mysqli_query($con, $query);
@@ -126,6 +127,10 @@
 <div class="form-group">
     <label for="confirm_password">Re-enter Password</label>
     <input type="password" id="confirm_password" name="confirm_password" class="form-control"  required>
+</div>
+<div class="form-group">
+    <label for="role">Role(Admin/User)</label>
+    <input type="text" id="role" name="role" class="form-control"  required>
 </div>
 
 

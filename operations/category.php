@@ -1,7 +1,6 @@
 <?php 
 include('../config/dbcon.php');
 include('header.php');  
-session_start() // session underscore start.
 ?>
 
 <?php 
@@ -75,7 +74,15 @@ session_start() // session underscore start.
                 <td><a href="../process/update_category.php?id=<?php echo $row['id']; ?>  "
                         class="btn btn-success">Update</a></td>
                 <td><a href="../process/delete_category.php?id=<?php echo $row['id']; ?>"
-                        class="btn btn-danger">Delete</a></td>
+                        class="btn btn-danger" onclick = "return confirmDeletion();" >Delete</a></td>
+
+
+                        <script>
+                       // javascript for a confirmation alert in time of deleting
+                       function confirmDeletion() {
+                       return confirm("Are you sure you want to delete this user?");
+                       }
+                      </script>
             </tr>
 
             <?php

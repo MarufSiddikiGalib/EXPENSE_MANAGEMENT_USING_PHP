@@ -5,7 +5,7 @@ include('../config/dbcon.php');
 
 function reorderAndReset($con) {
    
-   // Reorder IDs
+   // Reorder IDs of users
    $reorderQuery = "SET @count = 0; UPDATE users SET id = @count:= @count + 1;";
    if (mysqli_multi_query($con, $reorderQuery)) {
        // Wait for the queries to finish
@@ -14,11 +14,35 @@ function reorderAndReset($con) {
        die("Query Failed: " . mysqli_error($con));
    }
 
-   // Reset auto-increment value
+
+
+   // Reset auto-increment value of users
    $resetQuery = "ALTER TABLE users AUTO_INCREMENT = 1;";
    if (!mysqli_query($con, $resetQuery)) {
        die("Query Failed: " . mysqli_error($con));
    }
+
+
+
+// Reorder IDs of expense
+$reorderQuery = "SET @count = 0; UPDATE expense SET id = @count:= @count + 1;";
+if (mysqli_multi_query($con, $reorderQuery)) {
+    // Wait for the queries to finish
+    while (mysqli_next_result($con)) {;}
+} else {
+    die("Query Failed: " . mysqli_error($con));
+}
+
+
+
+// Reset auto-increment value of expense
+$resetQuery = "ALTER TABLE expense AUTO_INCREMENT = 1;";
+if (!mysqli_query($con, $resetQuery)) {
+    die("Query Failed: " . mysqli_error($con));
+}
+
+
+
 }
 
 
@@ -31,14 +55,19 @@ function reorderAndReset($con) {
 
      }
 
-     // Delete the user from database
-     $query = "DELETE FROM `users`WHERE `id` = '$id_new'";
+     // Delete the expenses added by that particuar user we are deleting from database
+     $expenseDeleteQuery = "DELETE FROM `expense` WHERE `added_by` = (SELECT `username` FROM `users` WHERE `id` = '$id_new')";
+     mysqli_query($con, $expenseDeleteQuery);
 
-     $result = mysqli_query($con, $query);
+     // Delete the user from database
+     $userDeleteQuery = "DELETE FROM `users`WHERE `id` = '$id_new'";
+     // In the $userDeleteResult we are storing both delete expense and delete user query
+     $userDeleteResult = mysqli_query($con, $userDeleteQuery);
+
   
-     if(!$result){
-        //my sqi error function
-        die("query Failed".mysqli_error($con));  //my sqi error function
+     if(!$userDeleteResult){
+        // My sqi error function
+        die("query Failed".mysqli_error($con));  
      }
 
      else{

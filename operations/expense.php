@@ -1,7 +1,7 @@
 <?php 
 include('../config/dbcon.php');
 include('header.php');  
-session_start() // session underscore start.
+
 ?>
 
 <?php 
@@ -60,8 +60,12 @@ session_start() // session underscore start.
      <?php
      
      // Select from database using query
-     $query = "SELECT * FROM `expense`";
+     // Select expenses for the particular logged-in user
+     $username = $_SESSION['username'];
+     $query = "SELECT * FROM `expense` WHERE `added_by` = '$username' ";
      $result = mysqli_query($con, $query);
+     // auto increment the id. Not taking id from the database
+     $rowNumber = 1;
 
      if(!$result){
         die("query Failed".mysqli_error($con));
@@ -71,19 +75,33 @@ session_start() // session underscore start.
             ?>
         
         <tr>
-            <td> <?php echo $row['id']; ?> </td>
+            <td> <?php echo $rowNumber; ?> </td>
             <td> <?php echo $row['category']; ?> </td>
             <td> <?php echo $row['item']; ?> </td>
             <td> <?php echo $row['price']; ?> </td>
             <td> <?php echo $row['details']; ?> </td>
             <td> <?php echo $row['expense_date']; ?> </td>
             <td> <?php echo $row['added_on']; ?> </td>
+
+            <?php 
+            // auto increment the id. Not taking id from the database
+             $rowNumber++;
+            ?>
             
 
             <td><a href="../process/update_expense.php?id=<?php echo $row['id']; ?>  " class = "btn btn-success">Update</a></td>
-            <td><a href="../process/delete_expense.php?id=<?php echo $row['id']; ?>" class = "btn btn-danger">Delete</a></td>
-        </tr>
+            <td><a href="../process/delete_expense.php?id=<?php echo $row['id']; ?>" class = "btn btn-danger"  onclick="return confirmDeletion();" >Delete</a></td>
 
+
+            <script>
+              // javascript for a confirmation alert in time of deleting
+              function confirmDeletion() {
+              return confirm("Are you sure you want to delete this expense?");
+              }
+            </script>
+
+        </tr>
+         
             <?php
         }
      }

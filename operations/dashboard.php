@@ -1,7 +1,6 @@
 <?php 
 include('../config/dbcon.php');
 include('header.php');  
-session_start(); // session underscore start.
 ?>
 
 <?php 
@@ -28,16 +27,17 @@ if (isset($_SESSION['username'])) {
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Category</th>
+                <th>Records</th>
                 <th>Amount</th>
-                <th>Action</th>
+                <th>View Details</th>
             </tr>
         </thead>
         <tbody>
             <?php
             // Function to calculate expenses based on a given date range
             function getExpense($con, $startDate, $endDate) {
-                $query = "SELECT SUM(price) AS total FROM expense WHERE expense_date BETWEEN '$startDate' AND '$endDate'";
+                $username = $_SESSION['username'];
+                $query = "SELECT SUM(price) AS total FROM expense WHERE expense_date BETWEEN '$startDate' AND '$endDate' AND added_by = '$username'";
                 $result = mysqli_query($con, $query);
                 if ($row = mysqli_fetch_assoc($result)) {
                     return $row['total'] ? $row['total'] : 0;

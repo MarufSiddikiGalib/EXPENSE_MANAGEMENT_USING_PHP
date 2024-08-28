@@ -1,7 +1,6 @@
 <?php 
 include('../config/dbcon.php');
 include('header.php');  
-session_start(); // session underscore start.
 ?>
 
 <?php 
@@ -64,11 +63,11 @@ if (isset($_SESSION['username'])) {
         $to_date = isset($_GET['to_date']) ? $_GET['to_date'] : '';
 
 
-
+        $username = $_SESSION['username'];
         // Modify query to filter by date if date range is provided
-        $query = "SELECT `category`, SUM(`price`) AS total_price FROM `expense`";
+        $query = "SELECT `category`, SUM(`price`) AS total_price FROM `expense`WHERE added_by = '$username'";
         if ($from_date && $to_date) {
-            $query .= " WHERE `expense_date` BETWEEN '$from_date' AND '$to_date'";
+            $query .= " AND `expense_date` BETWEEN '$from_date' AND '$to_date' ";
         }
         $query .= " GROUP BY `category`";
 

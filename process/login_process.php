@@ -20,7 +20,6 @@ session_start();
 
       $username = $_POST['username'];
       $password = $_POST['password'];
-
        
 
        //Select login info from database using my sql query
@@ -46,14 +45,17 @@ session_start();
              //Varify from hashed password
              //password_verify is an in built function
              $hashedPassword = $row['password'];
-       
+             
 
              //Given password checked with the hashedPassword
             if(password_verify($password, $hashedPassword)){
 
              //Get username with the session variable and change the directory to home.php
              $_SESSION['username'] = $username;
-             header('location: ../operations/home.php');
+             // Get the role. Two role (Admin and User)
+             $_SESSION['user_role'] = $row['role'];
+          
+             header('location: ../operations/dashboard.php');
              exit();
              }
 

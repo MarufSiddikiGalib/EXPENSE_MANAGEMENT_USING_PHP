@@ -1,7 +1,6 @@
 <?php 
 include('../config/dbcon.php');  
 include('header.php');  
-session_start() // session underscore start.
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +15,7 @@ session_start() // session underscore start.
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   
-    <link rel="stylesheet" href="../style/style_home.css">
+    <!-- <link rel="stylesheet" href="../style/style_home.css"> -->
 </head>
 <body>
     
@@ -46,12 +45,12 @@ session_start() // session underscore start.
 
 <div class = "box">
 <h3>ALL USERS</h3>
-<button class = "btn" data-toggle="modal" data-target="#exampleModal" data-toggle="modal" data-target="#exampleModal" >ADD USER</button>
+<button class = "btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-toggle="modal" data-target="#exampleModal" >ADD USER</button>
 </div>
 
 <h1>Admin Panel</h1>
 
-<table>
+<table class = "table table-bordered">
     <thead></thead>
         <tr>
             <th>ID</th>
@@ -61,7 +60,7 @@ session_start() // session underscore start.
             <th>mobile Number</th>
             <th>email</th>
             <th>dob</th>
-            <th>password</th>
+            <th>Role</th>
 
             <th>Update</th>
             <th>Delete</th>
@@ -91,10 +90,19 @@ session_start() // session underscore start.
             <td> <?php echo $row['mobile_number']; ?> </td>
             <td> <?php echo $row['email']; ?> </td>
             <td> <?php echo $row['dob']; ?> </td>
-            <td> <?php echo $row['password']; ?> </td>
+            <td> <?php echo $row['role']; ?> </td>
+    
 
             <td><a href="../process/update_user.php?id=<?php echo $row['id']; ?>  " class = "btn btn-success">Update</a></td>
-            <td><a href="../process/delete._user.php?id=<?php echo $row['id']; ?>" class = "btn btn-danger">Delete</a></td>
+            <td><a href="../process/delete._user.php?id=<?php echo $row['id']; ?>" class = "btn btn-danger" onclick="return confirmDeletion();">Delete</a></td>
+             
+            <script>
+              // javascript for a confirmation alert in time of deleting
+              function confirmDeletion() {
+              return confirm("Are you sure you want to delete this user?");
+              }
+            </script> 
+
         </tr>
 
             <?php
@@ -194,6 +202,10 @@ session_start() // session underscore start.
                 <label for="confirm_password">Re-enter Password</label>
                 <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
             </div>
+            <div class="form-group">
+                <label for="role">Role(Admin/User)</label>
+                <input type="text" id="role" name="role" class="form-control" required>
+            </div>
     
 
   </div>
@@ -214,9 +226,6 @@ session_start() // session underscore start.
 
 
 
-
-
-         <a href="../process/logout_process.php" class = "btn btn-danger" >Logout</a>  
 
         
 
