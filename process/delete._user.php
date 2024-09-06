@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 include('../config/dbcon.php');  
 
 
@@ -75,4 +75,5 @@ if (!mysqli_query($con, $resetQuery)) {
         reorderAndReset($con); 
         header("Location:../operations/home.php?delete_msg=Succesfully_deleted_the_user");
   }
-?>
+
+?> 

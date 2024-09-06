@@ -100,7 +100,7 @@ else{
 
        else{
          //Throw success messsage to url. Message showed in ./operations/home.php
-         $message = urlencode("USER ADDED SUCCESSFULL");
+         $message = urlencode("CATEGORY ADDED SUCCESSFULL");
          header("Location:../operations/category.php?message=" . $message);
          exit;
        }
