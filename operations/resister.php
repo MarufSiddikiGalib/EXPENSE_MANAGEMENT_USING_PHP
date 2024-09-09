@@ -45,6 +45,12 @@ include('../process/resister_requirement.php');
                 <label for="confirm_password">Re-enter Password</label>
                 <input type="password" id="confirm_password" name="confirm_password" required>
             </div>
+
+            <div class="form-group">
+                <label for="imageUpload">Upload Image</label>
+                <input type="file" class="form-control-file" id="imageUpload" name="uploaded_image" accept="image/*">
+            </div>
+
             <button type="submit" name="resister" class="btn">Register</button>
         </form>
 
